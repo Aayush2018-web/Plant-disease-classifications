@@ -8,7 +8,7 @@ import tensorflow as tf
 
 app = FastAPI()
 
-MODEL = tf.keras.models.load_model("../saved_models/1.keras")
+MODEL = tf.keras.models.load_model("saved_models/1.keras")
 
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
@@ -38,6 +38,8 @@ async def predict(
         'class': predicted_class,
         'confidence': float(confidence)
     }
+if __name__ == "__main__":
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
 
 
 
