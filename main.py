@@ -8,27 +8,6 @@ import tensorflow as tf
 
 app = FastAPI()
 
-
-origins = [
-    "http://localhost",
-    "http://localhost:3000",
-]
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
 MODEL = tf.keras.models.load_model("../saved_models/1.keras")
 
 CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
@@ -62,4 +41,5 @@ async def predict(
 
 
 if __name__ == "__main__":
+
     uvicorn.run(app, host='localhost', port=8000)
