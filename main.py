@@ -13,10 +13,7 @@ CLASS_NAMES = ["Early Blight", "Late Blight", "Healthy"]
 
 def read_file_as_image(data) -> np.ndarray:
     image = np.array(Image.open(BytesIO(data)))
-    new_size = (256,256)
-    image = image.resize(new_size)
     return image
-
 
 @app.post("/predict")
 async def predict(
@@ -35,10 +32,4 @@ async def predict(
     }
 if __name__ == "__main__":
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)
-
-
-
-
-
-
-
+    
